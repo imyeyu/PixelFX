@@ -1,0 +1,282 @@
+/*                           */
+/*    PixelFX - 像素 FX      */
+/*                           */
+
+@font-face {
+    src: url('./zpix.ttf');
+}
+
+/* Zpix 字体在 12 24 48 96 像素时表现为最清晰 */
+* {
+	-fx-font-family: 'Zpix';
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	-fx-font-smoothing-type: gray;
+}
+/* 表格 */
+.table-view {
+	-fx-padding: 0;
+	-fx-border-width: 1;
+	-fx-border-color: #BBB;
+	-fx-selection-bar: #BC9D9C;
+	-fx-background-insets: 0;
+	-fx-selection-bar-non-focused: salmon;
+}
+.table-view:focused {
+	-fx-border-color: #A67D7B;
+}
+.table-view .table-row-cell:selected {
+	-fx-background-color: #BC9D9C;
+}
+.table-view .table-row-cell:selected .table-cell,
+.table-view .table-row-cell:selected .edit-cell,
+.table-view .table-row-cell:selected .label {
+	-fx-text-fill: #FFF;
+}
+.table-view .text-field {
+	-fx-border-width: 1;
+	-fx-border-color: #BBB;
+	-fx-background-radius: 0;
+}
+.table-view-edit .table-row-cell {
+    -fx-cell-size: 30px;
+}
+.table-view-edit .edit-cell {
+	-fx-alignment: center-left;
+}
+/* 树形结构 */
+.tree-view:focused .cell:selected {
+	-fx-background-color: #BC9D9C;
+}
+.tree-cell {
+     -fx-indent: 2;
+}
+.tree-cell .tree-disclosure-node {
+	-fx-padding: 2 4 0 4;
+}
+.tree-cell .tree-disclosure-node .arrow,
+.tree-cell:expanded .tree-disclosure-node .arrow {
+	-fx-shape: "M303.5,391.5h1v1h1v1h1v1h1v1h1v1h-1v1h-1v1h-1v1h-1v1h-1Z";
+	-fx-min-width: 5;
+	-fx-min-height: 9;
+	-fx-pref-width: 5;
+	-fx-pref-height: 9;
+}
+
+/* 列表 */
+.list-view:focused .cell:selected {
+	-fx-background-color: #BC9D9C;
+}
+
+/* 表单组件 */
+Button {
+	-fx-padding: 4 10 6 10;
+	-fx-background-radius: 0;
+}
+.combo-box {
+	-fx-border-width: 1;
+	-fx-border-color: #BBB;
+	-fx-background-insets: 0;
+}
+
+.combo-box:focused {
+	-fx-border-color: #A67D7B;
+}
+.combo-box .text-input {
+	-fx-padding: 4;
+	-fx-border-width: 0;
+}
+.combo-box .arrow-button {
+	-fx-background-radius: 0;
+	-fx-background-insets: 0;
+}
+.combo-box .arrow-button {
+	-fx-padding: 0 6;
+	-fx-border-width: 0 0 0 1;
+	-fx-border-color: #BBB;
+}
+.combo-box .arrow-button .arrow {
+	-fx-shape: "M301.5,393.5v1h1v1h1v1h1v1h1v1h1v-1h1v-1h1v-1h1v-1h1v-1Z";
+	-fx-min-width: 9;
+	-fx-min-height: 5;
+	-fx-pref-width: 9;
+	-fx-pref-height: 5;
+}
+.switch-box {
+	-fx-alignment: center-left;
+	-fx-label-padding: 0 2 2 4;
+}
+.switch-box .box {
+	-fx-padding: 1 2 1 2;
+	-fx-alignment: center-left;
+	-fx-pref-width: 1.8em;
+	-fx-pref-height: .85em;
+	-fx-border-width: 1;
+	-fx-border-color: #BBB;
+	-fx-background-insets: 0;
+}
+.switch-box:selected .box {
+	-fx-padding: 0 2 2 2;
+	-fx-alignment: center-right;
+	-fx-border-color: #393;
+}
+.switch-box:focused .box {
+	-fx-border-color: #A67D7B;
+}
+.switch-box .mark {
+	-fx-shape: "M300.5,390.5h11v11h-11Z";
+	-fx-min-width: .6em;
+	-fx-max-width: .6em;
+	-fx-min-height: .6em;
+	-fx-max-height: .6em;
+	-fx-pref-width: .6em;
+	-fx-pref-height: .6em;
+	-fx-background-color: #9B9B9B;
+}
+.switch-box:selected .mark {
+	-fx-background-color: #393;
+}
+.text-field {
+	-fx-border-width: 1;
+	-fx-border-color: #BBB;
+    -fx-text-box-border: transparent;
+	-fx-background-color: -fx-control-inner-background;
+	-fx-background-insets: 0;
+	-fx-background-radius: 0;
+}
+.text-field:focused {
+	-fx-border-color: #A67D7B;
+    -fx-focus-color: transparent;
+}
+.label-text-field .text-field {
+	-fx-border-width: 0 0 0 1;
+}
+.label-text-field .text-field:focused {
+	-fx-border-color: #BBB;
+}
+.text-area {
+	-fx-border-width: 1;
+	-fx-border-color: #BBB;
+    -fx-background-color: transparent, white, transparent, white;
+    -fx-background-insets: 0;
+}
+.text-area:focused {
+	-fx-border-color: #A67D7B;
+}
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+	-fx-background-insets: 0;
+}
+.text-area:focused .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+.slider {
+	
+}
+.slider .track {
+	-fx-border-width: 1;
+	-fx-border-color: #BBB;
+	-fx-background-color: #FFF;
+	-fx-background-radius: 0;
+}
+.slider .thumb {
+	-fx-padding: 8 4;
+	-fx-border-width: 1;
+	-fx-border-color: #BBB;
+	-fx-background-radius: 0;
+}
+.slider:focused .track,
+.slider:focused .thumb {
+	-fx-border-color: #A67D7B;
+}
+
+/* 分体布局 */
+.split-pane {
+	-fx-padding: 0;
+	-fx-background-insets: 0;
+}
+.split-pane:vertical > .split-pane-divider,
+.split-pane:horizontal > .split-pane-divider {
+	-fx-padding: 0 2;
+	-fx-border-width: 0 1 0 0;
+	-fx-border-color: #000A;
+	-fx-background-color: #CDDEF0;
+}
+
+/* 滚动面板 */
+.scroll-pane {
+	-fx-padding: 0;
+	-fx-background-color: transparent;
+}
+.scroll-pane .viewport {
+	-fx-background-color: transparent;
+}
+/* 滚动条 */
+.scroll-bar {
+	-fx-padding: 0;
+}
+.scroll-bar .decrement-button,
+.scroll-bar .increment-button {
+	visibility: hidden;
+	-fx-min-width: 0;
+	-fx-min-height: 0;
+	-fx-pref-width: 0;
+	-fx-pref-height: 0;
+}
+.scroll-bar .decrement-arrow,
+.scroll-bar .increment-arrow {
+	visibility: hidden;
+	-fx-min-width: 0;
+	-fx-min-height: 0;
+	-fx-pref-width: 0;
+	-fx-pref-height: 0;
+}
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+	-fx-padding: 0;
+	-fx-border-color: #CDDEF0;
+	-fx-background-color: transparent;
+}
+.scroll-bar:vertical {
+	-fx-padding: 0;
+	-fx-pref-width: 7;
+	-fx-border-width: 0;
+}
+.scroll-bar:horizontal {
+	-fx-padding: 0;
+	-fx-pref-height: 7;
+	-fx-border-width: 0;
+}
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+	-fx-background-color: #525870;
+	-fx-background-insets: 0;
+	-fx-background-radius: 0;
+}
+/* 进度条 */
+.progress-bar {
+	-fx-border-width: 1;
+	-fx-border-color: #BC9D9C;
+	-fx-indeterminate-bar-flip: true;
+	-fx-indeterminate-bar-length: 60;
+	-fx-indeterminate-bar-escape: true;
+	-fx-indeterminate-bar-animation-time: 2;
+}
+.progress-bar .track {
+    -fx-background-color: transparent;
+}
+.progress-bar .bar {
+	-fx-padding: 6 0;
+	-fx-background-color: #BC9D9C;
+	-fx-background-insets: 0;
+	-fx-background-radius: 0;
+}
+.progress-bar:indeterminate .bar {
+	-fx-background-color: linear-gradient(to left, transparent, #BC9D9C);
+}
+/******* 自定义类 *******/
+/* 点下效果 */
+.translate-click:pressed {
+	-fx-translate-x: 1;
+	-fx-translate-y: 1;
+}
