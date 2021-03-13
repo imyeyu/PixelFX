@@ -1,12 +1,15 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import net.imyeyu.betterfx.BetterFX;
 import net.imyeyu.betterfx.extend.BorderX;
 import net.imyeyu.pixelfx.PixelFX;
+import net.imyeyu.pixelfx.PixelStage;
 import net.imyeyu.pixelfx.Zpix;
+import net.imyeyu.pixelfx.component.InputGroup;
 import net.imyeyu.pixelfx.component.PixelButton;
 import net.imyeyu.pixelfx.component.Switch;
 
@@ -24,8 +27,15 @@ public class TestApp extends Application {
 		sw.setFont(Zpix.getS());
 		Switch sw2x = new Switch("开关 2x", true);
 		sw2x.setFont(Zpix.getM());
+		// 组合组件
+		TextField tf = new TextField();
+		InputGroup<TextField> ig = new InputGroup<>("前标签", tf, "后标签");
+		// 像素风窗体
+		PixelStage ps = new PixelStage(380, 220);
+		PixelButton psBtn = new PixelButton("像素风窗体");
+		psBtn.setOnAction(e -> ps.show());
 
-		FlowPane root = new FlowPane(pxBtn, pxBtn2x, sw, sw2x);
+		FlowPane root = new FlowPane(pxBtn, pxBtn2x, sw, sw2x, ig, psBtn);
 		root.setBorder(new BorderX(BetterFX.LIGHT_GRAY).top().build());
 		root.setPadding(new Insets(8));
 		root.setVgap(6);
