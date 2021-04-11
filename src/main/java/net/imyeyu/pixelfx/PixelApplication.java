@@ -1,5 +1,6 @@
 package net.imyeyu.pixelfx;
 
+import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,37 +26,28 @@ import net.imyeyu.betterfx.extend.BorderX;
 import net.imyeyu.betterfx.util.Resizable;
 
 /**
- * 像素风窗体
- * 使用 root.setCenter, root.setBottom 来控制窗体根节点，不要使用 setTop，否则
- * 标题栏将被替换
+ * 像素风应用
  *
- * 夜雨 创建于 2021/3/13 14:59
+ * 夜雨 创建于 2021/4/9 21:56
  */
-public class PixelStage extends Stage {
+public abstract class PixelApplication extends Application {
 
-	private final double minWidth, minHeight;
 	private double ox = 0;
 	private double oy = 0;
 	private boolean isHiddenClose;
 	private PixelStageKeyPressed keyPressedEvent;
+	private AnchorPane shadowPane;
 
+	protected Stage stage;
 	protected Scene scene;
 	protected Label title;
 	protected Button min, close;
 	protected BorderPane root;
 
-	public PixelStage(double minWidth, double minHeight) {
-		this(minWidth, minHeight, false);
-	}
+	@Override
+	public void start(Stage stage) {
+		this.stage = stage;
 
-	public PixelStage(double minWidth, double minHeight, boolean isHiddenClose) {
-		this.minWidth = minWidth;
-		this.minHeight = minHeight;
-		this.isHiddenClose = isHiddenClose;
-		init();
-	}
-
-	private void init() {
 		// 标题
 		title = new Label("Pixel Stage");
 
@@ -86,8 +78,8 @@ public class PixelStage extends Stage {
 
 			header.getChildren().add(ctrl);
 
-			min.setOnAction(event -> setIconified(true));
-			close.setOnAction(event -> close());
+			min.setOnAction(event -> stage.setIconified(true));
+			close.setOnAction(event -> stage.close());
 		}
 
 		DropShadow rootShadow = new DropShadow();
@@ -103,7 +95,7 @@ public class PixelStage extends Stage {
 		root.setBorder(new BorderX("#CDDEF0").width(2).build());
 		root.setTop(header);
 
-		AnchorPane shadowPane = new AnchorPane();
+		shadowPane = new AnchorPane();
 		AnchorPaneX.def(root, 3);
 		shadowPane.setBackground(Background.EMPTY);
 		shadowPane.getChildren().addAll(root);
@@ -111,10 +103,8 @@ public class PixelStage extends Stage {
 		scene = new Scene(shadowPane);
 		scene.getStylesheets().add(PixelFX.CSS);
 		scene.setFill(null);
-		setWidth(minWidth);
-		setHeight(minHeight);
-		setScene(scene);
-		initStyle(StageStyle.TRANSPARENT);
+		stage.setScene(scene);
+		stage.initStyle(StageStyle.TRANSPARENT);
 
 		// 事件
 		header.setOnMousePressed(event -> {
@@ -122,18 +112,18 @@ public class PixelStage extends Stage {
 			oy = event.getY();
 		});
 		header.setOnMouseDragged(event -> {
-			setX(event.getScreenX() - ox - 6);
-			setY(event.getScreenY() - oy - 6);
+			stage.setX(event.getScreenX() - ox - 6);
+			stage.setY(event.getScreenY() - oy - 6);
 		});
 		// 关闭事件
 		final KeyCombination ctrl_w = new KeyCodeCombination(KeyCode.W, KeyCombination.CONTROL_DOWN);
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
 			if (ctrl_w.match(event)) {
-				close();
+				stage.close();
 			}
 			if (keyPressedEvent != null) keyPressedEvent.handler(event);
 		});
-		Resizable.add(this, shadowPane, minWidth, minHeight);
+		Resizable.add(stage, shadowPane, 0, 0);
 	}
 
 	public void appendKeyPressedEvent(PixelStageKeyPressed keyPressedEvent) {
@@ -146,10 +136,21 @@ public class PixelStage extends Stage {
 
 	public void setSyncTitle(String title) {
 		this.title.setText(title);
-		setTitle(title);
+		stage.setTitle(title);
+	}
+
+	public void setMinSize(double width, double height) {
+		stage.setMinWidth(width);
+		stage.setMinHeight(height);
+
+		stage.setWidth(width);
+		stage.setHeight(height);
+
+		Resizable.remove(shadowPane);
+		Resizable.add(stage, shadowPane, width, height);
 	}
 
 	public void setIcon(Image img) {
-		getIcons().add(img);
+		stage.getIcons().add(img);
 	}
 }

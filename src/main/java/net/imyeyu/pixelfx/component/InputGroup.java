@@ -20,40 +20,37 @@ public class InputGroup<T extends Control> extends HBox {
 	private final T control;
 	
 	public InputGroup(T control) {
-		this.control = control;
-		init();
+		this(null, control, null);
 	}
 	
 	public InputGroup(String before, T control) {
-		this.before = new Label(before);
-		this.before.setTextFill(BetterFX.GRAY);
-		this.control = control;
-		init();
+		this(before, control, null);
 	}
 	
 	public InputGroup(T control, String after) {
-		this.control = control;
-		this.after = new Label(after);
-		this.after.setTextFill(BetterFX.GRAY);
-		init();
+		this(null, control, after);
 	}
 
 	public InputGroup(String before, T control, String after) {
-		this.before = new Label(before);
-		this.before.setTextFill(BetterFX.GRAY);
+		if (before != null) {
+			this.before = new Label(before);
+			this.before.setTextFill(BetterFX.GRAY);
+			this.before.setOnMouseClicked(e -> control.requestFocus());
+			getChildren().add(this.before);
+		}
+
 		this.control = control;
-		this.after = new Label(after);
-		this.after.setTextFill(BetterFX.GRAY);
-		init();
-	}
-	
-	private void init() {
+		getChildren().add(control);
+
+		if (after != null) {
+			this.after = new Label(after);
+			this.after.setTextFill(BetterFX.GRAY);
+			this.after.setOnMouseClicked(e -> control.requestFocus());
+			getChildren().add(this.after);
+		}
+
 		setAlignment(Pos.CENTER_LEFT);
 		HBox.setMargin(control, new Insets(0, 4, 0, 4));
-
-		if (before != null) getChildren().add(before);
-		getChildren().add(control);
-		if (after != null) getChildren().add(after);
 	}
 	
 	public Label getBefore() {
