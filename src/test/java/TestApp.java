@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -23,7 +24,7 @@ public class TestApp extends Application {
 		PixelButton pxBtn2x = new PixelButton("按钮 2x");
 		pxBtn2x.setFont(Zpix.getM());
 		// 开关
-		Switch sw = new Switch("开关");
+		Switch sw = new Switch("开关", HPos.RIGHT);
 		sw.setFont(Zpix.getS());
 		Switch sw2x = new Switch("开关 2x", true);
 		sw2x.setFont(Zpix.getM());

@@ -2,6 +2,7 @@ package net.imyeyu.pixelfx.component;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -28,13 +29,22 @@ public class Switch extends HBox {
 	private final Region region;
 
 	public Switch() {
-		this("");
+		this("", HPos.LEFT);
 	}
+
 	public Switch(String text) {
-		this("", false);
+		this(text, HPos.RIGHT, false);
+	}
+
+	public Switch(String text, boolean isSelected) {
+		this(text, HPos.RIGHT, isSelected);
+	}
+
+	public Switch(String text, HPos pos) {
+		this(text, pos, false);
 	}
 	
-	public Switch(String text, boolean isSelected) {
+	public Switch(String text, HPos pos, boolean isSelected) {
 		// 滑块
 		region = new Region();
 		region.setPrefWidth(11);
@@ -53,7 +63,11 @@ public class Switch extends HBox {
 		setAlignment(Pos.CENTER_LEFT);
 		setFillHeight(false);
 		setSpacing(6);
-		getChildren().addAll(box, label);
+		if (pos == HPos.LEFT) {
+			getChildren().addAll(box, label);
+		} else {
+			getChildren().addAll(label, box);
+		}
 		// 事件
 		setOnMouseClicked(e -> {
 			selectedProperty.set(!selectedProperty.get());
