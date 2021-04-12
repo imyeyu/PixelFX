@@ -26,20 +26,22 @@
 	-fx-border-color: #A67D7B;
 }
 .table-view .table-row-cell:selected {
-	-fx-background-color: #BC9D9C;
+	-fx-background-color: #FBDCE4;
 }
-.table-view .table-row-cell:selected .table-cell,
-.table-view .table-row-cell:selected .edit-cell,
-.table-view .table-row-cell:selected .label {
-	-fx-text-fill: #FFF;
+.table-view .table-row-cell .table-cell,
+.table-view .table-row-cell .edit-cell {
+	-fx-padding: 0 3;
 }
 .table-view .text-field {
+	-fx-padding: 1;
+	-fx-min-height: 20;
+	-fx-pref-height: 20;
 	-fx-border-width: 1;
 	-fx-border-color: #BBB;
 	-fx-background-radius: 0;
 }
 .table-view-edit .table-row-cell {
-    -fx-cell-size: 30px;
+    -fx-cell-size: 30;
 }
 .table-view-edit .edit-cell {
 	-fx-alignment: center-left;
@@ -241,6 +243,9 @@ Button {
 	-fx-background-color: linear-gradient(to left, transparent, #BC9D9C);
 }
 /******* 自定义类 *******/
+.hover-effect:hover {
+	-fx-opacity: .7;
+}
 /* 点下效果 */
 .translate-click:pressed {
 	-fx-translate-x: 1;
