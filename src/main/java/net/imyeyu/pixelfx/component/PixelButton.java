@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
 import javafx.scene.paint.Color;
 import net.imyeyu.betterfx.BetterFX;
 import net.imyeyu.betterfx.extend.BgFill;
@@ -21,7 +22,10 @@ public class PixelButton extends Button {
 	private final Background bgDedault = new BgFill("#EEE", "#DADADA").toBottom().build();
 	private final Background bgHover = new BgFill("#F8F8F8", "#E5E5E5").toBottom().build();
 	private final Background bgPressed = new BgFill("#EEE").build();
-	
+
+	private Border borderFocused = BetterFX.BORDER_FOCUSED;
+	private Border borderDefault = BetterFX.BORDER_DEFAULT;
+
 	public PixelButton() {
 		this("");
 	}
@@ -45,7 +49,7 @@ public class PixelButton extends Button {
 		// 指向
 		hoverProperty().addListener((obs, o, isHover) -> setBackground(isHover ? bgHover : bgDedault));
 		// 聚焦
-		focusedProperty().addListener((obs, o, isFocused) -> setBorder(isFocused ? BetterFX.BORDER_FOCUSED : BetterFX.BORDER_DEFAULT));
+		focusedProperty().addListener((obs, o, isFocused) -> setBorder(isFocused ? borderFocused : borderDefault));
 		// 禁用
 		disabledProperty().addListener((obs, o, isDisabled) -> setOpacity(isDisabled ? .5 : 1));
 		
@@ -65,5 +69,20 @@ public class PixelButton extends Button {
 			setTranslateY(0);
 			setEffect(shadow);
 		});
+	}
+
+	public void setBorderDefault(Border borderDefault) {
+		setBorder(borderDefault);
+		this.borderDefault = borderDefault;
+	}
+
+	public void setBorderFocused(Border borderFocused) {
+		this.borderFocused = borderFocused;
+	}
+
+	public void clearClickEffect() {
+		setEffect(null);
+		setOnMousePressed(null);
+		setOnMouseReleased(null);
 	}
 }
